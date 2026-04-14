@@ -15,7 +15,7 @@ body{
 .contenedor{
     border: 2px solid black;
     width: 800px;
-    height: 300px;
+    height: 400px;
     display: flex;
 }
 .contenedor-form{
@@ -30,4 +30,60 @@ body{
     justify-content: center;
     align-items: center;
 }
-
+.contenedor-form h2{
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+.Redes-sociales{
+    display: flex;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+.Redes-sociales ion-icon{
+    border: 1px solid #C9CCCB;
+    font-size: 18px;
+    border-radius: 6px;
+    padding: 8px;
+    cursor: pointer;
+}
+.contenedor-form span{
+    font-size: 12px;
+    margin-bottom: 15px;
+}
+.contenido-input{
+    width: 300px;
+    height: 40px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 0,15px;
+    background-color: #EEEEEE;
+}
+.contenido-input input{
+    border: none;
+    outline: none;
+    width: 100%;
+    height: 100%;
+    background-color: inherit;
+}
+.contenedor-form a{
+    color: black;
+    font-size: 14px;
+    margin-bottom: 20px;
+    margin-top: 5px;
+}
+.button{
+    width: 170px;
+    height: 45px;
+    font-size: 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    background-color: #3AB397;
+    color: white;
+}
+/*Animaciones del formulario*/
+.si
