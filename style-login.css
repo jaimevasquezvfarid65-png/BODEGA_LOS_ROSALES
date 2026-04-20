@@ -17,10 +17,12 @@ body{
     width: 800px;
     height: 400px;
     display: flex;
+    position: relative;
 }
 .contenedor-form{
     border: 2px solid red;
     width: 100%;
+    overflow: hidden;
 }
 .contenedor-form form{
     border: 2px solid rgb(113, 247, 247);
@@ -29,6 +31,7 @@ body{
     flex-direction:column;
     justify-content: center;
     align-items: center;
+    transition: transform 0.5s ease-in;
 }
 .contenedor-form h2{
     font-size: 30px;
@@ -86,4 +89,25 @@ body{
     color: white;
 }
 /*Animaciones del formulario*/
-.si
+
+.sign-up{
+    transform: translateX(-100%);
+}
+.contenedor.toggle .sign-in{
+    transform: translateX(100%);
+}
+.contenedor.toggle .sign-up{
+    transform: translateX(0);
+}
+
+/*welcome*/
+.contenedor-ingreso{
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    transform: translateX(100%);
+    background-color: #3AB397;
+
+}
