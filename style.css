@@ -179,7 +179,7 @@ footer {
     transition: 0.5s;
 }
 
-.imagenTienda:hover .overplay{
+.imagenTienda:hover .overlay{
     opacity: 1;
 }
 
@@ -210,4 +210,30 @@ footer {
 
 .btn-mapa:hover{
     background: #cc0000;
+}
+
+/* ORGANIZACIÓN GENERAL*/
+.infoTienda{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    align-items: start;
+}
+
+/* IMAGEN DESTACADA ARRIBA */
+.imagenTienda{
+    grid-column: 1 / -1; /*ocupa todo el ancho */
+    margin: 0 auto;
+}
+
+/* HORARIO */
+.horario{
+    grid-column: 1;
+}
+
+/* UBICACION */
+.infoTienda h2,
+.infoTienda p,
+.btn-mapa{
+    grid-column: 2
 }

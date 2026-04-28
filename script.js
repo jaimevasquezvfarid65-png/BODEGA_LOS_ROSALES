@@ -7,7 +7,7 @@ btnSignIn.addEventListener("click",()=>{
 });
 btnSignUp.addEventListener("click",()=>{
     contenedor.classList.add("toggle");
-    
+
 });
 
 // Para el registro
