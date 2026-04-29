@@ -10,13 +10,12 @@
 <body>
     <!-- PÁGINA DE PRODUCTOS Flor Anali Becerra Acuña Descripción: Página que muestra los productos disponibles en la tienda Los rosales, faltan colocar las imágenes -->
 <header>
-    <h1>LOS ROSALES</h1>
+    <h1>BODEGA - LOS ROSALES</h1>
     <nav>
         <ul>
             <li id="usuarioNav"></li>
-            <li><a href="Login.html" id="linkLogin">Registrarse</a></li>
+            <li><a href="#" id="cerrarSesion">Cerrar sesión</a></li>
             <li><a href="index.html">Inicio</a></li>
-            <li><a href="#" id="cerrarSesion" style="display:none;">Cerrar sesión</a></li>
         </ul>
     </nav>
 </header>
@@ -239,6 +238,26 @@
 
     </div>
   </section>
-<script src="script.js"></script>
+  <script>
+        const usuarioNav = document.getElementById('usuarioNav');
+        const navCerrar = document.getElementById('navCerrar');
+
+        const navRegistro = document.getElementById('navRegistro');
+
+        const logueado = localStorage.getItem('logueado');
+        const nombreUsuario = localStorage.getItem('usuarioNombre');
+
+        if(logueado ==="true"){
+            usuarioNav.innerHTML = `<ion-icon name="person-outline"></ion-icon> ${nombreUsuario}`;
+        } else {
+            usuarioNav.innerHTML = '';
+
+            navRegistro.style.display = 'inline';
+            navCerrar.style.display = 'none';
+        }
+    </script>
+    <script src="script.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>

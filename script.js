@@ -1,15 +1,12 @@
 const contenedor = document.querySelector(".contenedor");
 const btnSignIn = document.getElementById("btn-sign-in");
 const btnSignUp = document.getElementById("btn-sign-up");
-
 btnSignIn.addEventListener("click",()=>{
     contenedor.classList.remove("toggle");
 });
 btnSignUp.addEventListener("click",()=>{
     contenedor.classList.add("toggle");
-
 });
-
 // Para el registro
 const btnRegistrar = document.getElementById("btn-registrar");
 if (btnRegistrar) {
@@ -17,15 +14,14 @@ if (btnRegistrar) {
         const nombre = document.getElementById("registroNombre").value;
         const correo = document.getElementById("registroCorreo").value;
         const password = document.getElementById("registroPassword").value;
-
         if (nombre === "" || correo === "" || password === "") {
             alert("Complete todos los espacios");
             return;
         }
-
         localStorage.setItem("usuarioNombre", nombre);
         localStorage.setItem("usuarioCorreo", correo);
         localStorage.setItem("usuarioPassword", password);
+        localStorage.setItem("logueado", "true");
         alert("¡Se registró correctamente!");
         contenedor.classList.remove("toggle"); // vuelve al login
     });
