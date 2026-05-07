@@ -13,7 +13,7 @@ body {
 
 /* HEADER */
 header {
-    background-color: #131921;
+    background: linear-gradient(90deg, #ff4d6d, #ff758f);
     color: white;
     padding: 15px 30px;
     display: flex;
@@ -36,17 +36,41 @@ nav a {
     text-decoration: none;
     font-size: 14px;
 }
-
+nav ul li a{
+    border: 2px solid white;
+    padding: 5px 10px;
+    border-radius: 30px;
+    transition: 0.3s;
+}
+nav ul li a:hover{
+    background-color: white;
+    color:#cc0000;
+    font-size: 20px;
+    transition: 0.3s;
+}
 nav a:hover {
     color: #f0c14b;
 }
 
 /* BANNER */
 .banner {
-    background: linear-gradient(to right, #ff9900, #ffcc00);
-    color: white;
-    text-align: center;
-    padding: 50px 20px;
+    background: url("Imágenes/Tienda.jpg") center/cover no-repeat;
+    height: 260px;
+    margin: 20px;
+    border-radius: 20px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.baner::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    border-radius: 20px;
 }
 
 .banner h2 {
@@ -137,103 +161,69 @@ footer {
     margin-top: 30px;
 }
 
-.infoTienda{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    padding: 40px;
-    align-items: center;
-    justify-content: center;
+/* CONTENEDOR GENERAL */
+.infoTienda {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 25px;
+    padding: 20px;
 }
 
-/* IMAGEN */
-.imagenTienda{
-    position: relative;
-    width: 400px;
-    overflow: hidden;
-    border-radius: 15px;
+/* TARJETAS */
+.horario {
+    border-left: 5px solid #ff4d6d;
 }
 
-.imagenTienda img{
+.beneficios {
+    border-left: 5px solid #a855f7;
+}
+
+.ubicacion {
+    border-left: 5px solid #3b82f6;
+}
+
+/* IMAGEN CENTRAL */
+.imagenTienda {
+    grid-column: 2;
+}
+
+.imagenTienda img {
     width: 100%;
-    transition: transform 0.5s ease;
-}
-
-.imagenTienda:hover img{
-    transform: scale(1.1);
-}
-
-/* OVERLAY */
-.overlay{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.5);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: 0.5s;
-}
-
-.imagenTienda:hover .overlay{
-    opacity: 1;
-}
-
-/* INFO */
-.horario{
-    max-width: 400px;
-    background: #f5f5f5;
-    padding: 25px;
     border-radius: 15px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
 
-.horario h2{
-    margin-top: 10px;
+/* MENSAJE ABAJO */
+.mensaje {
+    grid-column: 2;
+    background: #fff4e6;
+    padding: 15px;
+    border-radius: 12px;
+    text-align: center;
 }
 
-/* BOTON */
-.btn-mapa{
-    display: inline-block;
-    margin-top: 15px;
-    padding: 10px 20px;
-    background: #ff4d4d;
-    color: white;
-    text-decoration: none;
+.mensaje {
+    background: #fff4e6;
+    border-left: 5px solid #ff9900;
+}
+
+/* BOTÓN */
+.btn-mapa {
+    .btn-mapa {
+    background: linear-gradient(45deg, #ff4d4d, #ff1a1a);
+    padding: 12px 20px;
+    font-weight: bold;
     border-radius: 10px;
-    transition: 0.3s;
+    border: 2px solid white;
+}
 }
 
-.btn-mapa:hover{
+.btn-mapa:hover {
     background: #cc0000;
 }
 
-/* ORGANIZACIÓN GENERAL*/
-.infoTienda{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-    align-items: start;
-}
-
-/* IMAGEN DESTACADA ARRIBA */
-.imagenTienda{
-    grid-column: 1 / -1; /*ocupa todo el ancho */
-    margin: 0 auto;
-}
-
-/* HORARIO */
-.horario{
-    grid-column: 1;
-}
-
-/* UBICACION */
-.infoTienda h2,
-.infoTienda p,
-.btn-mapa{
-    grid-column: 2
+.horario:hover,
+.beneficios:hover,
+.ubicacion:hover {
+    transform: translateY(-5px);
 }

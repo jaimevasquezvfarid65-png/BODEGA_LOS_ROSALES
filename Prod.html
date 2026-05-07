@@ -1,263 +1,329 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Productos</title>
+    <title>Productos - Bodega Los Rosales</title>
     <link rel="stylesheet" href="style.css">
-
+    <link rel="stylesheet" href="style-productos.css">
 </head>
 <body>
-    <!-- PÁGINA DE PRODUCTOS Flor Anali Becerra Acuña Descripción: Página que muestra los productos disponibles en la tienda Los rosales, faltan colocar las imágenes -->
+
+<!-- HEADER -->
 <header>
     <h1>BODEGA - LOS ROSALES</h1>
     <nav>
         <ul>
             <li id="usuarioNav"></li>
-            <li><a href="#" id="cerrarSesion">Cerrar sesión</a></li>
             <li><a href="index.html">Inicio</a></li>
+            <li><a href="#" id="cerrarSesion">Cerrar sesión</a></li>
         </ul>
     </nav>
+    <!-- BOTÓN DEL CARRITO -->
+    <button class="btn-carrito-flotante" onclick="toggleCarrito()">
+        🛒
+        <span id="carrito-badge" style="display:none">0</span>
+    </button>
 </header>
+
+<!-- PANEL LATERAL DEL CARRITO -->
+<div id="carrito-panel" class="carrito-panel">
+    <div class="carrito-header">
+        <h3>🛒 Mi Carrito</h3>
+        <button class="btn-cerrar-carrito" onclick="toggleCarrito()">✕</button>
+    </div>
+    <div id="carrito-lista" class="carrito-lista">
+        <p class="carrito-vacio">Tu carrito está vacío 🛒</p>
+    </div>
+    <div class="carrito-footer">
+        <p id="carrito-total" class="carrito-total">Total: S/ 0.00</p>
+        <button class="btn-pagar" onclick="alert('¡Gracias por tu compra! 🎉')">Finalizar compra</button>
+        <button class="btn-vaciar" onclick="vaciarCarrito()">Vaciar carrito</button>
+    </div>
+</div>
+<div id="overlay-carrito" class="overlay-carrito" onclick="toggleCarrito()"></div>
+
+<!-- TOAST NOTIFICACIÓN -->
+<div id="toast" class="toast"></div>
+
+<!-- PRODUCTOS -->
 <section class="productos">
     <h2>Nuestros Productos</h2>
+
+    <!-- FILTROS POR CATEGORÍA -->
+    <div class="filtros">
+        <button class="btn-filtro activo" data-cat="Todos" onclick="filtrarCategoria('Todos')">Todos</button>
+        <button class="btn-filtro" data-cat="Abarrotes" onclick="filtrarCategoria('Abarrotes')">🌾 Abarrotes</button>
+        <button class="btn-filtro" data-cat="Lácteos" onclick="filtrarCategoria('Lácteos')">🥛 Lácteos</button>
+        <button class="btn-filtro" data-cat="Bebidas" onclick="filtrarCategoria('Bebidas')">🥤 Bebidas</button>
+        <button class="btn-filtro" data-cat="Snacks" onclick="filtrarCategoria('Snacks')">🍪 Snacks</button>
+        <button class="btn-filtro" data-cat="Limpieza" onclick="filtrarCategoria('Limpieza')">🧴 Limpieza</button>
+        <button class="btn-filtro" data-cat="Conservas" onclick="filtrarCategoria('Conservas')">🥫 Conservas</button>
+        <button class="btn-filtro" data-cat="Pastas" onclick="filtrarCategoria('Pastas')">🍝 Pastas</button>
+        <button class="btn-filtro" data-cat="Panadería" onclick="filtrarCategoria('Panadería')">🍞 Panadería</button>
+        <button class="btn-filtro" data-cat="Dulces" onclick="filtrarCategoria('Dulces')">🍬 Dulces</button>
+        <button class="btn-filtro" data-cat="Salsas" onclick="filtrarCategoria('Salsas')">🫙 Salsas</button>
+        <button class="btn-filtro" data-cat="Bebidas Calientes" onclick="filtrarCategoria('Bebidas Calientes')">☕ Café</button>
+    </div>
+
     <div class="contenedor-productos">
-        <div class="producto">
 
-     <div class="producto">
-         <p>Lácteos</p>
-         <h3>Leche entera 1L</h3>
-         <img src="Imágenes/Leche entera 1L.jpg" alt="Leche">
-        <h3>Leche entera 1L</h3>
+        <!-- Cada producto tiene: data-categoria, nombre, precio en agregarCarrito(nombre, precio) -->
 
-       
-        <span class="precio">S/ 3.50</span>
-       
-        <button onclick="agregarCarrito('Leche entera 1L')">Agregar al carrito</button>
-      </div>
+        <div class="producto" data-categoria="Lácteos">
+            <div class="producto-badge">Lácteos</div>
+            <img src="Imágenes/Leche entera 1L.jpg" alt="Leche entera 1L">
+            <h3>Leche entera 1L</h3>
+            <span class="precio">S/ 3.50</span>
+            <button onclick="agregarCarrito('Leche entera 1L', 3.50)">🛒 Agregar al carrito</button>
+        </div>
 
-        <div class="producto">
-            <img src="Imágenes/Arroz 1kg.jpg" alt="Arroz de 1kg">
-        <h3>Arroz 1kg</h3>
-        <p>Abarrotes</p>
-        <span class="precio">S/ 3.00</span>
-        
-        <button onclick="agregarCarrito('Arroz 1kg')">Agregar al carrito</button>
-      </div>   
-        <div class="producto">
-            <img src="Imágenes/Aceite 1L.jpg" alt="Aceite de 1L">
-        <h3>Aceite 1L</h3>
-        <p>Abarrotes</p>
-        <span class="precio">S/ 6.50</span>
-        <button onclick="agregarCarrito('Aceite 1L')">Agregar al carrito</button>
-      </div>
-   
-         <div class="producto">
-               <img src="Imágenes/Detergente 500g.jpg" alt="Detergente de 500g">
-        <h3>Detergente 500g</h3>
-        <p>Limpieza</p>
-        <span class="precio">S/ 4.20</span>
-        <button onclick="agregarCarrito('Detergente 500g')">Agregar al carrito</button>
-      </div>
+        <div class="producto" data-categoria="Abarrotes">
+            <div class="producto-badge">Abarrotes</div>
+            <img src="Imágenes/Arroz 1kg.jpg" alt="Arroz 1kg">
+            <h3>Arroz 1kg</h3>
+            <span class="precio">S/ 3.00</span>
+            <button onclick="agregarCarrito('Arroz 1kg', 3.00)">🛒 Agregar al carrito</button>
+        </div>
 
-        <div class="producto">
-            <img src="Imágenes/Agua mineral 500ml.jpg" alt="Agua mineral de 500ml">
-        <h3>Agua mineral 500ml</h3>
-        <p>Bebidas</p>
-        <span class="precio">S/ 1.00</span>
-        <button onclick="agregarCarrito('Agua mineral 600ml')">Agregar al carrito</button>
-      </div>
+        <div class="producto" data-categoria="Abarrotes">
+            <div class="producto-badge">Abarrotes</div>
+            <img src="Imágenes/Aceite 1L.jpg" alt="Aceite 1L">
+            <h3>Aceite 1L</h3>
+            <span class="precio">S/ 6.50</span>
+            <button onclick="agregarCarrito('Aceite 1L', 6.50)">🛒 Agregar al carrito</button>
+        </div>
 
- <div class="producto">
-     <img src="Imágenes/Azúcar 1kg.jpg" alt="Azúcar de 1kg">
-        <h3>Azúcar 1kg</h3>
-        <p>Abarrotes</p>
-        <span class="precio">S/ 2.80</span>
-        <button onclick="agregarCarrito('Azúcar 1kg')">Agregar al carrito</button>
-      </div>
+        <div class="producto" data-categoria="Limpieza">
+            <div class="producto-badge">Limpieza</div>
+            <img src="Imágenes/Detergente 500g.jpg" alt="Detergente 500g">
+            <h3>Detergente 500g</h3>
+            <span class="precio">S/ 4.20</span>
+            <button onclick="agregarCarrito('Detergente 500g', 4.20)">🛒 Agregar al carrito</button>
+        </div>
 
-    
-<div class="producto">
-     <img src="Imágenes/Arroz Extra 1kg.jpg" alt="Arroz Extra de 1kg">
-    <h3>Arroz Extra 1kg</h3>
-    <p>Abarrotes</p>
-    <span class="precio">S/ 4.20</span>
-    <button onclick="agregarCarrito('Arroz Extra 1kg')">Agregar al carrito</button>
-</div>
+        <div class="producto" data-categoria="Bebidas">
+            <div class="producto-badge">Bebidas</div>
+            <img src="Imágenes/Agua mineral 500ml.jpg" alt="Agua mineral 500ml">
+            <h3>Agua mineral 500ml</h3>
+            <span class="precio">S/ 1.00</span>
+            <button onclick="agregarCarrito('Agua mineral 500ml', 1.00)">🛒 Agregar al carrito</button>
+        </div>
 
-<div class="producto">
-     <img src="Imágenes/Fideos Spaghetti 500g.jpg" alt="Fideos Spaghetti de 500g">
-    <h3>Fideos Spaghetti 500g</h3>
-    <p>Abarrotes</p>
-    <span class="precio">S/ 2.50</span>
-    <button onclick="agregarCarrito('Fideos Spaghetti 500g')">Agregar al carrito</button>
-</div>
+        <div class="producto" data-categoria="Abarrotes">
+            <div class="producto-badge">Abarrotes</div>
+            <img src="Imágenes/Azúcar 1kg.jpg" alt="Azúcar 1kg">
+            <h3>Azúcar 1kg</h3>
+            <span class="precio">S/ 2.80</span>
+            <button onclick="agregarCarrito('Azúcar 1kg', 2.80)">🛒 Agregar al carrito</button>
+        </div>
 
-<div class="producto">
-     <img src="Imágenes/Leche Evaporada 400g.jpg" alt="Leche evaporada de 400g">
-    <h3>Leche Evaporada 400g</h3>
-    <p>Lácteos</p>
-    <span class="precio">S/ 4.00</span>
-    <button onclick="agregarCarrito('Leche Evaporada 400g')">Agregar al carrito</button>
-</div>
+        <div class="producto" data-categoria="Abarrotes">
+            <div class="producto-badge">Abarrotes</div>
+            <img src="Imágenes/Arroz Extra 1kg.jpg" alt="Arroz Extra 1kg">
+            <h3>Arroz Extra 1kg</h3>
+            <span class="precio">S/ 4.20</span>
+            <button onclick="agregarCarrito('Arroz Extra 1kg', 4.20)">🛒 Agregar al carrito</button>
+        </div>
 
-<div class="producto">
-     <img src="Imágenes/Mayonesa 190g.jpg" alt="Mayonesa">
-    <h3>Mayonesa 190g</h3>
-    <p>Salsas</p>
-    <span class="precio">S/ 3.80</span>
-    <button onclick="agregarCarrito('Mayonesa 190g')">Agregar al carrito</button>
-</div>
+        <div class="producto" data-categoria="Pastas">
+            <div class="producto-badge">Pastas</div>
+            <img src="Imágenes/Fideos Spaghetti 500g.jpg" alt="Fideos Spaghetti 500g">
+            <h3>Fideos Spaghetti 500g</h3>
+            <span class="precio">S/ 2.50</span>
+            <button onclick="agregarCarrito('Fideos Spaghetti 500g', 2.50)">🛒 Agregar al carrito</button>
+        </div>
 
-<div class="producto">
-     <img src="Imágenes/Mermelada de fresa 250g.jpg" alt="Mermelada de fresa 250g">
-    <h3>Mermelada de Fresa 250g</h3>
-    <p>Dulces</p>
-    <span class="precio">S/ 4.50</span>
-    <button onclick="agregarCarrito('Mermelada de Fresa 250g')">Agregar al carrito</button>
-</div>
+        <div class="producto" data-categoria="Lácteos">
+            <div class="producto-badge">Lácteos</div>
+            <img src="Imágenes/Leche Evaporada 400g.jpg" alt="Leche Evaporada 400g">
+            <h3>Leche Evaporada 400g</h3>
+            <span class="precio">S/ 4.00</span>
+            <button onclick="agregarCarrito('Leche Evaporada 400g', 4.00)">🛒 Agregar al carrito</button>
+        </div>
 
-<div class="producto">
-     <img src="Imágenes/Gaseosa Cola 1.5L.jpg" alt="Gaseosa Coca Cola de 1.5L">
-    <h3>Gaseosa Coca Cola 1.5L</h3>
-    <p>Bebidas</p>
-    <span class="precio">S/ 6.00</span>
-    <button onclick="agregarCarrito('Gaseosa Cola 1.5L')">Agregar al carrito</button>
-</div>
-<div class="producto">
-     <img src="Imágenes/Princesa.jpg" alt="Princesa">
-    <h3> Princesa</h3>
-    <p>Dulces</p>
-    <span class="precio">S/ 2.00</span>
-    <button onclick="agregarCarrito('Princesa')">Agregar al carrito</button>
+        <div class="producto" data-categoria="Salsas">
+            <div class="producto-badge">Salsas</div>
+            <img src="Imágenes/Mayonesa 190g.jpg" alt="Mayonesa 190g">
+            <h3>Mayonesa 190g</h3>
+            <span class="precio">S/ 3.80</span>
+            <button onclick="agregarCarrito('Mayonesa 190g', 3.80)">🛒 Agregar al carrito</button>
+        </div>
 
-</div>
-<div class="producto">
-     <img src="Imágenes/Galletas de Vainilla (Pack).jpg" alt="Galletas de Vainilla (Pack))">
-    <h3>Galletas de Vainilla (Pack)</h3>
-    <p>Snacks</p>
-    <span class="precio">S/ 2.20</span>
-    <button onclick="agregarCarrito('Galletas de Vainilla')">Agregar al carrito</button>
-</div>
+        <div class="producto" data-categoria="Dulces">
+            <div class="producto-badge">Dulces</div>
+            <img src="Imágenes/Mermelada de fresa 250g.jpg" alt="Mermelada de Fresa 250g">
+            <h3>Mermelada de Fresa 250g</h3>
+            <span class="precio">S/ 4.50</span>
+            <button onclick="agregarCarrito('Mermelada de Fresa 250g', 4.50)">🛒 Agregar al carrito</button>
+        </div>
 
-<div class="producto">
-     <img src="Imágenes/Detergente en Polvo 800g.jpg" alt="Detergente en polvo de 800g">
-    <h3>Detergente en Polvo 800g</h3>
-    <p>Limpieza</p>
-    <span class="precio">S/ 7.50</span>
-    <button onclick="agregarCarrito('Detergente 800g')">Agregar al carrito</button>
-</div>
+        <div class="producto" data-categoria="Bebidas">
+            <div class="producto-badge">Bebidas</div>
+            <img src="Imágenes/Gaseosa Cola 1.5L.jpg" alt="Gaseosa Coca Cola 1.5L">
+            <h3>Gaseosa Coca Cola 1.5L</h3>
+            <span class="precio">S/ 6.00</span>
+            <button onclick="agregarCarrito('Gaseosa Coca Cola 1.5L', 6.00)">🛒 Agregar al carrito</button>
+        </div>
 
-<div class="producto">
-     <img src="Imágenes/Grated de Atún 170g.jpg" alt="Grated de Atún 170g">
-    <h3>Grated de Atún 170g</h3>
-    <p>Conservas</p>
-    <span class="precio">S/ 5.50</span>
-    <button onclick="agregarCarrito('Atún 170g')">Agregar al carrito</button>
-</div>
+        <div class="producto" data-categoria="Dulces">
+            <div class="producto-badge">Dulces</div>
+            <img src="Imágenes/Princesa.jpg" alt="Princesa">
+            <h3>Princesa</h3>
+            <span class="precio">S/ 2.00</span>
+            <button onclick="agregarCarrito('Princesa', 2.00)">🛒 Agregar al carrito</button>
+        </div>
 
-<div class="producto">
-     <img src="Imágenes/Galletas Rellenas (Pack 6).jpg" alt="Galletas Rellenas (Pack 6)">
-    <h3>Galletas Rellenas (Pack 6)</h3>
-    <p>Snacks</p>
-    <span class="precio">S/ 4.50</span>
-    <button onclick="agregarCarrito('Galletas Rellenas')">Agregar al carrito</button>
-</div>
+        <div class="producto" data-categoria="Snacks">
+            <div class="producto-badge">Snacks</div>
+            <img src="Imágenes/Galletas de Vainilla (Pack).jpg" alt="Galletas de Vainilla">
+            <h3>Galletas de Vainilla (Pack)</h3>
+            <span class="precio">S/ 2.20</span>
+            <button onclick="agregarCarrito('Galletas de Vainilla (Pack)', 2.20)">🛒 Agregar al carrito</button>
+        </div>
 
-<div class="producto">
-     <img src="Imágenes/Tallarín Delgado 500g.jpg" alt="Tallarín Delgado de 500g">
-    <h3>Tallarín Delgado 500g</h3>
-    <p>Pastas</p>
-    <span class="precio">S/ 2.80</span>
-    <button onclick="agregarCarrito('Tallarín Delgado 500g')">Agregar al carrito</button>
-</div>
+        <div class="producto" data-categoria="Limpieza">
+            <div class="producto-badge">Limpieza</div>
+            <img src="Imágenes/Detergente en Polvo 800g.jpg" alt="Detergente en Polvo 800g">
+            <h3>Detergente en Polvo 800g</h3>
+            <span class="precio">S/ 7.50</span>
+            <button onclick="agregarCarrito('Detergente en Polvo 800g', 7.50)">🛒 Agregar al carrito</button>
+        </div>
 
-<div class="producto">
-     <img src="Imágenes/Pasta Tornillo 500g.jpg" alt="Pasta Tornillo de 500g">
-    <h3>Pasta Tornillo 500g</h3>
-    <p>Pastas</p>
-    <span class="precio">S/ 3.00</span>
-    <button onclick="agregarCarrito('Pasta Tornillo 500g')">Agregar al carrito</button>
-</div>
+        <div class="producto" data-categoria="Conservas">
+            <div class="producto-badge">Conservas</div>
+            <img src="Imágenes/Grated de Atún 170g.jpg" alt="Grated de Atún 170g">
+            <h3>Grated de Atún 170g</h3>
+            <span class="precio">S/ 5.50</span>
+            <button onclick="agregarCarrito('Grated de Atún 170g', 5.50)">🛒 Agregar al carrito</button>
+        </div>
 
-<div class="producto">
-     <img src="Imágenes/Pan de Molde Familiar.jpg" alt="Pan de Molde Familiar">
-    <h3>Pan de Molde Familiar</h3>
-    <p>Panadería</p>
-    <span class="precio">S/ 7.20</span>
-    <button onclick="agregarCarrito('Pan de Molde')">Agregar al carrito</button>
-</div>
+        <div class="producto" data-categoria="Snacks">
+            <div class="producto-badge">Snacks</div>
+            <img src="Imágenes/Galletas Rellenas (Pack 6).jpg" alt="Galletas Rellenas Pack 6">
+            <h3>Galletas Rellenas (Pack 6)</h3>
+            <span class="precio">S/ 4.50</span>
+            <button onclick="agregarCarrito('Galletas Rellenas (Pack 6)', 4.50)">🛒 Agregar al carrito</button>
+        </div>
 
-<div class="producto">
-     <img src="Imágenes/Café Instantáneo 100g.jpg" alt="Cafe Instantáneo 100g">
-    <h3>Café Instantáneo 100g</h3>
-    <p>Bebidas Calientes</p>
-    <span class="precio">S/ 12.50</span>
-    <button onclick="agregarCarrito('Café Instantáneo')">Agregar al carrito</button>
-</div>
+        <div class="producto" data-categoria="Pastas">
+            <div class="producto-badge">Pastas</div>
+            <img src="Imágenes/Tallarín Delgado 500g.jpg" alt="Tallarín Delgado 500g">
+            <h3>Tallarín Delgado 500g</h3>
+            <span class="precio">S/ 2.80</span>
+            <button onclick="agregarCarrito('Tallarín Delgado 500g', 2.80)">🛒 Agregar al carrito</button>
+        </div>
 
-<div class="producto">
-     <img src="Imágenes/Atún en Trozos (Lata).jpg" alt="Atún en Trozos (Lata)">
-    <h3>Atún en Trozos (Lata)</h3>
-    <p>Conservas</p>
-    <span class="precio">S/ 6.20</span>
-    <button onclick="agregarCarrito('Atún en Trozos')">Agregar al carrito</button>
-</div>
+        <div class="producto" data-categoria="Pastas">
+            <div class="producto-badge">Pastas</div>
+            <img src="Imágenes/Pasta Tornillo 500g.jpg" alt="Pasta Tornillo 500g">
+            <h3>Pasta Tornillo 500g</h3>
+            <span class="precio">S/ 3.00</span>
+            <button onclick="agregarCarrito('Pasta Tornillo 500g', 3.00)">🛒 Agregar al carrito</button>
+        </div>
 
-<div class="producto">
-     <img src="Imágenes/Café Molido 250g.jpg" alt="Café Molido de 250g">
-    <h3>Café Molido 250g</h3>
-    <p>Bebidas Calientes</p>
-    <span class="precio">S/ 15.00</span>
-    <button onclick="agregarCarrito('Café Molido 250g')">Agregar al carrito</button>
-</div>
+        <div class="producto" data-categoria="Panadería">
+            <div class="producto-badge">Panadería</div>
+            <img src="Imágenes/Pan de Molde Familiar.jpg" alt="Pan de Molde Familiar">
+            <h3>Pan de Molde Familiar</h3>
+            <span class="precio">S/ 7.20</span>
+            <button onclick="agregarCarrito('Pan de Molde Familiar', 7.20)">🛒 Agregar al carrito</button>
+        </div>
 
-<div class="producto">
-     <img src="Imágenes/Galletas de Soda (Pack).jpg" alt="Galletas de soda(Pack)">
-    <h3>Galletas de Soda (Pack)</h3>
-    <p>Snacks</p>
-    <span class="precio">S/ 3.50</span>
-    <button onclick="agregarCarrito('Galletas de Soda')">Agregar al carrito</button>
-</div>
+        <div class="producto" data-categoria="Bebidas Calientes">
+            <div class="producto-badge">Café</div>
+            <img src="Imágenes/Café Instantáneo 100g.jpg" alt="Café Instantáneo 100g">
+            <h3>Café Instantáneo 100g</h3>
+            <span class="precio">S/ 12.50</span>
+            <button onclick="agregarCarrito('Café Instantáneo 100g', 12.50)">🛒 Agregar al carrito</button>
+        </div>
 
-<div class="producto">
-     <img src="Imágenes/Panetón Tradicional 900g.jpg" alt="Panetón Tradicional de 900g">
-    <h3>Panetón Tradicional 900g</h3>
-    <p>Panadería</p>
-    <span class="precio">S/ 22.00</span>
-    <button onclick="agregarCarrito('Panetón')">Agregar al carrito</button>
-</div>
+        <div class="producto" data-categoria="Conservas">
+            <div class="producto-badge">Conservas</div>
+            <img src="Imágenes/Atún en Trozos (Lata).jpg" alt="Atún en Trozos">
+            <h3>Atún en Trozos (Lata)</h3>
+            <span class="precio">S/ 6.20</span>
+            <button onclick="agregarCarrito('Atún en Trozos (Lata)', 6.20)">🛒 Agregar al carrito</button>
+        </div>
 
-<div class="producto">
-     <img src="Imágenes/Filete de Atún Premium.jpg" alt="Filete de Atún Premiun">
-    <h3>Filete de Atún Premium</h3>
-    <p>Conservas</p>
-    <span class="precio">S/ 7.80</span>
-    <button onclick="agregarCarrito('Filete Atún')">Agregar al carrito</button>
-</div>
+        <div class="producto" data-categoria="Bebidas Calientes">
+            <div class="producto-badge">Café</div>
+            <img src="Imágenes/Café Molido 250g.jpg" alt="Café Molido 250g">
+            <h3>Café Molido 250g</h3>
+            <span class="precio">S/ 15.00</span>
+            <button onclick="agregarCarrito('Café Molido 250g', 15.00)">🛒 Agregar al carrito</button>
+        </div>
+
+        <div class="producto" data-categoria="Snacks">
+            <div class="producto-badge">Snacks</div>
+            <img src="Imágenes/Galletas de Soda (Pack).jpg" alt="Galletas de Soda">
+            <h3>Galletas de Soda (Pack)</h3>
+            <span class="precio">S/ 3.50</span>
+            <button onclick="agregarCarrito('Galletas de Soda (Pack)', 3.50)">🛒 Agregar al carrito</button>
+        </div>
+
+        <div class="producto" data-categoria="Panadería">
+            <div class="producto-badge">Panadería</div>
+            <img src="Imágenes/Panetón Tradicional 900g.jpg" alt="Panetón Tradicional 900g">
+            <h3>Panetón Tradicional 900g</h3>
+            <span class="precio">S/ 22.00</span>
+            <button onclick="agregarCarrito('Panetón Tradicional 900g', 22.00)">🛒 Agregar al carrito</button>
+        </div>
+
+        <div class="producto" data-categoria="Conservas">
+            <div class="producto-badge">Conservas</div>
+            <img src="Imágenes/Filete de Atún Premium.jpg" alt="Filete de Atún Premium">
+            <h3>Filete de Atún Premium</h3>
+            <span class="precio">S/ 7.80</span>
+            <button onclick="agregarCarrito('Filete de Atún Premium', 7.80)">🛒 Agregar al carrito</button>
+        </div>
 
     </div>
-  </section>
-  <script>
-        const usuarioNav = document.getElementById('usuarioNav');
-        const navCerrar = document.getElementById('navCerrar');
+</section>
 
-        const navRegistro = document.getElementById('navRegistro');
+<footer>
+    <p>&copy; 2026 BODEGA - LOS ROSALES</p>
+    <p>Contacto: +51 966 741 103</p>
+</footer>
 
-        const logueado = localStorage.getItem('logueado');
-        const nombreUsuario = localStorage.getItem('usuarioNombre');
+<script>
+    // Mostrar usuario logueado
+    const usuarioNav = document.getElementById('usuarioNav');
+    const logueado = localStorage.getItem('logueado');
+    const nombreUsuario = localStorage.getItem('usuarioNombre');
+    if (logueado === "true") {
+        usuarioNav.innerHTML = `<ion-icon name="person-outline"></ion-icon> ${nombreUsuario}`;
+    }
+    // Cerrar sesión
+    const cerrarSesion = document.getElementById('cerrarSesion');
+    if (cerrarSesion) {
+        cerrarSesion.addEventListener('click', () => {
+            localStorage.removeItem('logueado');
+            localStorage.removeItem('usuarioNombre');
+            alert("¡Sesión cerrada!");
+            window.location.href = "index.html";
+        });
+    }
 
-        if(logueado ==="true"){
-            usuarioNav.innerHTML = `<ion-icon name="person-outline"></ion-icon> ${nombreUsuario}`;
-        } else {
-            usuarioNav.innerHTML = '';
-
-            navRegistro.style.display = 'inline';
-            navCerrar.style.display = 'none';
+    // Vaciar carrito completo
+    function vaciarCarrito() {
+        if (confirm("¿Deseas vaciar el carrito?")) {
+            carrito = [];
+            guardarCarrito();
+            actualizarCarritoUI();
         }
-    </script>
-    <script src="script.js"></script>
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    }
+
+    // Overlay: cerrar al hacer click fuera
+    function toggleCarrito() {
+        const panel = document.getElementById("carrito-panel");
+        const overlay = document.getElementById("overlay-carrito");
+        panel.classList.toggle("abierto");
+        overlay.classList.toggle("activo");
+    }
+</script>
+<script src="script.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>

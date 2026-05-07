@@ -12,7 +12,7 @@
     <header>
         <h1>BODEGA - LOS ROSALES</h1>
         <nav>
-            <ul>
+            <ul id="navPag">
                 <li id="usuarioNav"></li>
                 <li><a id="navRegistro" href="Login.html">Registrarse</a></li>
                 <li><a href="Prod.html">Productos</a></li>
@@ -24,37 +24,54 @@
 
     <!-- CONTENIDO PRINCIPAL --> <!-- NATURALICH IBARRA -->
      <section class="banner">
-        <h2>Bienvenidos a "BODEGA - LOS ROSALES"</h2>
-        <p>Tu tienda de confianza para productos frescos y de calidad.</p>
-     </section>
+        <div class="contenido-banner">
+            <h2>Bienvenidos a</h2>
+            <h1>BODEGA - LOS ROSALES</h1>
+            <p>Tu tienda de confianza para productos frescos y de calidad.</p>
 
-     <section class="infoTienda">
-        <!--IMAGEN    IMAGEN DE LA TIENDA - NATURALICH IBARRA-->
-        <div class="imagenTienda">
-            <img src="Imágenes/Tienda.jpg" alt="Bodega los Rosales">
-            <div class="overlay">
-                <h2>Visítanos en Los Rosales</h2>
+            <div class="badge">
+                ❤️ Calidad, confianza y buenos precios
             </div>
         </div>
+    </section>
 
-        <!--INFO     HORARIO DE ATENCION Y UBICACION DE LA TIENDA - NATURALICH IBARRA-->
+    <section class="infoTienda">
+
         <div class="horario">
-            <h2>🕒 Horario de Atención</h2>
-
-            <div class="fila">
-                <span>Lunes - Viernes</span>
-                <span>7:30 AM - 8:00 PM</span>
-            </div>
-
-            <div class="fila">
-                <span>Sábado - Domingo</span>
-                <span>8:00 AM - 7:00 PM</span>
-            </div>
+            <h3>🕒 Horario de Atención</h3>
+            <p><b>Lunes - Viernes</b><br>7:30 AM - 8:00 PM</p>
+            <p><b>Sábado - Domingo</b><br>8:00 AM - 7:00 PM</p>
         </div>
-        
-        <h2>Ubicación</h2>
-        <p>Cajamarca, Perú</p>
-        <a href="https://maps.app.goo.gl/wQSk3L6UaXnmWiei9" target="_blank" class="btn-mapa">📍 Ver en Google Maps</a>
+
+        <div class="imagenTienda">
+            <img src="Imágenes/Tienda.jpg" alt="">
+        </div>
+
+        <div class="ubicacion">
+            <h3>📍 Ubicación</h3>
+            <p>Cajamarca, Perú</p>
+            <a href="https://maps.app.goo.gl/wQSk3L6UaXnmWiei9" target="_blank" class="btn-mapa">
+                Ver en Google Maps
+            </a>
+        </div>
+
+        <div class="beneficios">
+            <h3>¿Por qué elegirnos?</h3>
+            <ul>
+                <li>✔ Productos de calidad</li>
+                <li>✔ Precios competitivos</li>
+                <li>✔ Atención rápida</li>
+            </ul>
+        </div>
+
+        <div class="mensaje">
+            <h3>🛒 Más que una tienda, somos tu aliado</h3>
+            <p>
+                En Bodega Los Rosales nos esforzamos cada día para brindarte productos frescos,
+                variedad y un excelente servicio.
+            </p>
+        </div>
+
     </section>
 
      <section class="beneficios">
@@ -65,6 +82,16 @@
             <li>Atención al cliente excepcional.</li>
         </ul>
      </section>
+     <div>
+        <div class="Formulario">
+        <h3>¿Qúe opinas de nuestro servicio?</h3>
+        <p>Haz clic en el botón para dejar tu opnion</p>
+        <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modalContacto">
+            <i class="bi bi-envelope-paper-fill"></i> Abrir el Formulario
+        </button>
+    </div>
+        
+     </div>
 
      <!-- PIE DE PÁGINA -->  <!-- NATURALICH IBARRA -->
         <footer>
