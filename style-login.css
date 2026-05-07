@@ -1,0 +1,149 @@
+*{
+    font-family:Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F0F4F3;
+}
+.contenedor{
+    width: 800px;
+    height: 500px;
+    display: flex;
+    position: relative;
+    background-color: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgb(0,0,0,0.3);
+}
+.contenedor-form{
+    width: 100%;
+    overflow: hidden;
+}
+.contenedor-form form{
+    height: 100%;
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.5s ease-in;
+}
+.contenedor-form h2{
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+.Redes-sociales{
+    display: flex;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+.Redes-sociales ion-icon{
+    border: 1px solid #C9CCCB;
+    font-size: 18px;
+    border-radius: 6px;
+    padding: 8px;
+    cursor: pointer;
+}
+.contenedor-form span{
+    font-size: 12px;
+    margin-bottom: 15px;
+}
+.contenido-input{
+    width: 300px;
+    height: 40px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 0 15px;
+    background-color: #EEEEEE;
+}
+.contenido-input input{
+    border: none;
+    outline: none;
+    width: 100%;
+    height: 100%;
+    background-color: inherit;
+}
+.contenedor-form a{
+    color: black;
+    font-size: 14px;
+    margin-bottom: 20px;
+    margin-top: 5px;
+}
+.button{
+    width: 170px;
+    height: 45px;
+    font-size: 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    background-color: #3AB397;
+    color: white;
+}
+/*Animaciones del formulario*/
+.sign-up{
+    transform: translateX(-100%);
+}
+.contenedor.toggle .sign-in{
+    transform: translateX(100%);
+}
+.contenedor.toggle .sign-up{
+    transform: translateX(0);
+}
+/*welcome*/
+.contenedor-welcome{
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    transform: translateX(100%);
+    background-color: #3AB397;
+    transition: transform 0.5s ease-in-out, border-radius 0.5s ease-in-out;
+    overflow: hidden;
+    border-radius: 50% 0 0 50%;
+}
+.contenedor.toggle .contenedor-welcome{
+    transform: translateX(0);
+    border-radius: 0 50% 50% 0;
+    background-color: #3AABAD;
+}
+.contenedor-welcome .welcome{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 0 50px;
+    color: white;
+    transition: transform 0.5s ease-in-out;
+}
+.welcome-sign-in{
+    transform: translateX(100%);
+}
+.contenedor-welcome h3{
+    font-size: 40px;
+}
+.contenedor-welcome p{
+    font-size: 14px;
+    text-align: center;
+}
+.contenedor-welcome .button{
+    border: 2px solid white;
+    background-color: transparent;
+}
+.contenedor.toggle .welcome-sign-in{
+    transform: translateX(0);
+}
+.contenedor.toggle .welcome-sign-up{
+    transform: translateX(-100%);
+}
