@@ -38,17 +38,16 @@ body{
     font-size: 30px;
     margin-bottom: 20px;
 }
+
 .Redes-sociales{
-    display: flex;
-    gap: 12px;
-    margin-bottom: 25px;
-}
-.Redes-sociales ion-icon{
     border: 1px solid #C9CCCB;
     font-size: 18px;
     border-radius: 6px;
     padding: 8px;
     cursor: pointer;
+    display: flex;
+    gap: 12px;
+    margin-bottom: 25px;
 }
 .contenedor-form span{
     font-size: 12px;

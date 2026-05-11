@@ -4,26 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Productos - Bodega Los Rosales</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="style-productos.css">
 </head>
 <body>
 
 <!-- HEADER -->
-<header>
-    <h1>BODEGA - LOS ROSALES</h1>
-    <nav>
-        <ul>
-            <li id="usuarioNav"></li>
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="#" id="cerrarSesion">Cerrar sesión</a></li>
-        </ul>
-    </nav>
-    <!-- BOTÓN DEL CARRITO -->
-    <button class="btn-carrito-flotante" onclick="toggleCarrito()">
-        🛒
-        <span id="carrito-badge" style="display:none">0</span>
-    </button>
+<header class="header-principal">
+    <div class="container-fluid d-flex justify-content-between align-items-center py-3 px-4">
+        <h1 class="header-titulo mb-0">
+            <i class="bi bi-shop"></i> BODEGA - LOS ROSALES
+        </h1>
+        <nav>
+            <ul class="nav gap-2 align-items-center">
+                <li class="nav-item" id="usuarioNav"></li>
+                <li class="nav-item">
+                    <a href="index.html" class="btn btn-outline-light btn-sm rounded-pill px-3">
+                        <i class="bi bi-house-fill"></i> Inicio
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" id="cerrarSesion" class="btn btn-light btn-sm rounded-pill px-3 text-danger fw-bold">
+                        <i class="bi bi-box-arrow-right"></i> Cerrar sesión
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <button class="btn-carrito-flotante ms-2" onclick="toggleCarrito()">
+            🛒
+            <span id="carrito-badge" style="display:none">0</span>
+        </button>
+    </div>
 </header>
 
 <!-- PANEL LATERAL DEL CARRITO -->
@@ -37,20 +54,59 @@
     </div>
     <div class="carrito-footer">
         <p id="carrito-total" class="carrito-total">Total: S/ 0.00</p>
-        <button class="btn-pagar" onclick="alert('¡Gracias por tu compra! 🎉')">Finalizar compra</button>
-        <button class="btn-vaciar" onclick="vaciarCarrito()">Vaciar carrito</button>
+        <p class="small text-center text-muted mb-2">
+            💜 Yape: <strong>+51 966 741 103</strong>
+        </p>
+        <button class="btn-pagar" onclick="finalizarCompra()">
+            <i class="bi bi-bag-check-fill me-1"></i> Finalizar compra
+        </button>
+        <button class="btn-vaciar" onclick="vaciarCarrito()">
+            <i class="bi bi-trash3"></i> Vaciar carrito
+        </button>
     </div>
 </div>
 <div id="overlay-carrito" class="overlay-carrito" onclick="toggleCarrito()"></div>
 
-<!-- TOAST NOTIFICACIÓN -->
+<!-- TOAST -->
 <div id="toast" class="toast"></div>
+
+<!-- MODAL FINALIZAR COMPRA -->
+<div class="modal fade" id="modalCompra" tabindex="-1" aria-labelledby="modalCompraLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded-4">
+            <div class="modal-header text-white rounded-top-4" style="background: linear-gradient(135deg, #ff4d6d, #ff758f);">
+                <h5 class="modal-title" id="modalCompraLabel">
+                    <i class="bi bi-bag-check-fill"></i> Confirmar Pedido
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body p-4">
+                <p class="fw-semibold mb-3">Resumen de tu pedido:</p>
+                <div id="resumenCompra" class="mb-3"></div>
+                <hr>
+                <div class="yape-box rounded-4 p-3">
+                    <h6 class="fw-bold mb-2">
+                        💜 Paga con Yape
+                    </h6>
+                    <p class="small text-muted mb-2">Yapea al siguiente número y haz clic en "Confirmar pedido":</p>
+                    <span class="badge bg-purple fs-6 px-3 py-2 rounded-pill">
+                        <i class="bi bi-phone-fill me-1"></i> +51 904 637 770
+                    </span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger rounded-pill px-4 fw-bold" id="btnConfirmarCompra">
+                    <i class="bi bi-check-circle-fill"></i> Confirmar pedido
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- PRODUCTOS -->
 <section class="productos">
     <h2>Nuestros Productos</h2>
-
-    <!-- FILTROS POR CATEGORÍA -->
     <div class="filtros">
         <button class="btn-filtro activo" data-cat="Todos" onclick="filtrarCategoria('Todos')">Todos</button>
         <button class="btn-filtro" data-cat="Abarrotes" onclick="filtrarCategoria('Abarrotes')">🌾 Abarrotes</button>
@@ -68,14 +124,12 @@
 
     <div class="contenedor-productos">
 
-        <!-- Cada producto tiene: data-categoria, nombre, precio en agregarCarrito(nombre, precio) -->
-
         <div class="producto" data-categoria="Lácteos">
             <div class="producto-badge">Lácteos</div>
             <img src="Imágenes/Leche entera 1L.jpg" alt="Leche entera 1L">
             <h3>Leche entera 1L</h3>
             <span class="precio">S/ 3.50</span>
-            <button onclick="agregarCarrito('Leche entera 1L', 3.50)">🛒 Agregar al carrito</button>
+            <button onclick="agregarCarrito('Leche entera 1L', 3.50)"><i class="bi bi-cart"></i> Agregar al carrito</button>
         </div>
 
         <div class="producto" data-categoria="Abarrotes">
@@ -83,7 +137,7 @@
             <img src="Imágenes/Arroz 1kg.jpg" alt="Arroz 1kg">
             <h3>Arroz 1kg</h3>
             <span class="precio">S/ 3.00</span>
-            <button onclick="agregarCarrito('Arroz 1kg', 3.00)">🛒 Agregar al carrito</button>
+            <button onclick="agregarCarrito('Arroz 1kg', 3.00)"><i class="bi bi-cart"></i> Agregar al carrito</button>
         </div>
 
         <div class="producto" data-categoria="Abarrotes">
@@ -91,7 +145,7 @@
             <img src="Imágenes/Aceite 1L.jpg" alt="Aceite 1L">
             <h3>Aceite 1L</h3>
             <span class="precio">S/ 6.50</span>
-            <button onclick="agregarCarrito('Aceite 1L', 6.50)">🛒 Agregar al carrito</button>
+            <button onclick="agregarCarrito('Aceite 1L', 6.50)"><i class="bi bi-cart"></i> Agregar al carrito</button>
         </div>
 
         <div class="producto" data-categoria="Limpieza">
@@ -99,7 +153,7 @@
             <img src="Imágenes/Detergente 500g.jpg" alt="Detergente 500g">
             <h3>Detergente 500g</h3>
             <span class="precio">S/ 4.20</span>
-            <button onclick="agregarCarrito('Detergente 500g', 4.20)">🛒 Agregar al carrito</button>
+            <button onclick="agregarCarrito('Detergente 500g', 4.20)"><i class="bi bi-cart"></i> Agregar al carrito</button>
         </div>
 
         <div class="producto" data-categoria="Bebidas">
@@ -107,7 +161,7 @@
             <img src="Imágenes/Agua mineral 500ml.jpg" alt="Agua mineral 500ml">
             <h3>Agua mineral 500ml</h3>
             <span class="precio">S/ 1.00</span>
-            <button onclick="agregarCarrito('Agua mineral 500ml', 1.00)">🛒 Agregar al carrito</button>
+            <button onclick="agregarCarrito('Agua mineral 500ml', 1.00)"><i class="bi bi-cart"></i> Agregar al carrito</button>
         </div>
 
         <div class="producto" data-categoria="Abarrotes">
@@ -115,7 +169,7 @@
             <img src="Imágenes/Azúcar 1kg.jpg" alt="Azúcar 1kg">
             <h3>Azúcar 1kg</h3>
             <span class="precio">S/ 2.80</span>
-            <button onclick="agregarCarrito('Azúcar 1kg', 2.80)">🛒 Agregar al carrito</button>
+            <button onclick="agregarCarrito('Azúcar 1kg', 2.80)"><i class="bi bi-cart"></i> Agregar al carrito</button>
         </div>
 
         <div class="producto" data-categoria="Abarrotes">
@@ -123,7 +177,7 @@
             <img src="Imágenes/Arroz Extra 1kg.jpg" alt="Arroz Extra 1kg">
             <h3>Arroz Extra 1kg</h3>
             <span class="precio">S/ 4.20</span>
-            <button onclick="agregarCarrito('Arroz Extra 1kg', 4.20)">🛒 Agregar al carrito</button>
+            <button onclick="agregarCarrito('Arroz Extra 1kg', 4.20)"><i class="bi bi-cart"></i> Agregar al carrito</button>
         </div>
 
         <div class="producto" data-categoria="Pastas">
@@ -131,7 +185,7 @@
             <img src="Imágenes/Fideos Spaghetti 500g.jpg" alt="Fideos Spaghetti 500g">
             <h3>Fideos Spaghetti 500g</h3>
             <span class="precio">S/ 2.50</span>
-            <button onclick="agregarCarrito('Fideos Spaghetti 500g', 2.50)">🛒 Agregar al carrito</button>
+            <button onclick="agregarCarrito('Fideos Spaghetti 500g', 2.50)"><i class="bi bi-cart"></i> Agregar al carrito</button>
         </div>
 
         <div class="producto" data-categoria="Lácteos">
@@ -139,7 +193,7 @@
             <img src="Imágenes/Leche Evaporada 400g.jpg" alt="Leche Evaporada 400g">
             <h3>Leche Evaporada 400g</h3>
             <span class="precio">S/ 4.00</span>
-            <button onclick="agregarCarrito('Leche Evaporada 400g', 4.00)">🛒 Agregar al carrito</button>
+            <button onclick="agregarCarrito('Leche Evaporada 400g', 4.00)"><i class="bi bi-cart"></i> Agregar al carrito</button>
         </div>
 
         <div class="producto" data-categoria="Salsas">
@@ -147,7 +201,7 @@
             <img src="Imágenes/Mayonesa 190g.jpg" alt="Mayonesa 190g">
             <h3>Mayonesa 190g</h3>
             <span class="precio">S/ 3.80</span>
-            <button onclick="agregarCarrito('Mayonesa 190g', 3.80)">🛒 Agregar al carrito</button>
+            <button onclick="agregarCarrito('Mayonesa 190g', 3.80)"><i class="bi bi-cart"></i> Agregar al carrito</button>
         </div>
 
         <div class="producto" data-categoria="Dulces">
@@ -155,7 +209,7 @@
             <img src="Imágenes/Mermelada de fresa 250g.jpg" alt="Mermelada de Fresa 250g">
             <h3>Mermelada de Fresa 250g</h3>
             <span class="precio">S/ 4.50</span>
-            <button onclick="agregarCarrito('Mermelada de Fresa 250g', 4.50)">🛒 Agregar al carrito</button>
+            <button onclick="agregarCarrito('Mermelada de Fresa 250g', 4.50)"><i class="bi bi-cart"></i> Agregar al carrito</button>
         </div>
 
         <div class="producto" data-categoria="Bebidas">
@@ -163,7 +217,7 @@
             <img src="Imágenes/Gaseosa Cola 1.5L.jpg" alt="Gaseosa Coca Cola 1.5L">
             <h3>Gaseosa Coca Cola 1.5L</h3>
             <span class="precio">S/ 6.00</span>
-            <button onclick="agregarCarrito('Gaseosa Coca Cola 1.5L', 6.00)">🛒 Agregar al carrito</button>
+            <button onclick="agregarCarrito('Gaseosa Coca Cola 1.5L', 6.00)"><i class="bi bi-cart"></i> Agregar al carrito</button>
         </div>
 
         <div class="producto" data-categoria="Dulces">
@@ -171,7 +225,7 @@
             <img src="Imágenes/Princesa.jpg" alt="Princesa">
             <h3>Princesa</h3>
             <span class="precio">S/ 2.00</span>
-            <button onclick="agregarCarrito('Princesa', 2.00)">🛒 Agregar al carrito</button>
+            <button onclick="agregarCarrito('Princesa', 2.00)"><i class="bi bi-cart"></i> Agregar al carrito</button>
         </div>
 
         <div class="producto" data-categoria="Snacks">
@@ -179,7 +233,7 @@
             <img src="Imágenes/Galletas de Vainilla (Pack).jpg" alt="Galletas de Vainilla">
             <h3>Galletas de Vainilla (Pack)</h3>
             <span class="precio">S/ 2.20</span>
-            <button onclick="agregarCarrito('Galletas de Vainilla (Pack)', 2.20)">🛒 Agregar al carrito</button>
+            <button onclick="agregarCarrito('Galletas de Vainilla (Pack)', 2.20)"><i class="bi bi-cart"></i> Agregar al carrito</button>
         </div>
 
         <div class="producto" data-categoria="Limpieza">
@@ -187,7 +241,7 @@
             <img src="Imágenes/Detergente en Polvo 800g.jpg" alt="Detergente en Polvo 800g">
             <h3>Detergente en Polvo 800g</h3>
             <span class="precio">S/ 7.50</span>
-            <button onclick="agregarCarrito('Detergente en Polvo 800g', 7.50)">🛒 Agregar al carrito</button>
+            <button onclick="agregarCarrito('Detergente en Polvo 800g', 7.50)"><i class="bi bi-cart"></i> Agregar al carrito</button>
         </div>
 
         <div class="producto" data-categoria="Conservas">
@@ -195,7 +249,7 @@
             <img src="Imágenes/Grated de Atún 170g.jpg" alt="Grated de Atún 170g">
             <h3>Grated de Atún 170g</h3>
             <span class="precio">S/ 5.50</span>
-            <button onclick="agregarCarrito('Grated de Atún 170g', 5.50)">🛒 Agregar al carrito</button>
+            <button onclick="agregarCarrito('Grated de Atún 170g', 5.50)"><i class="bi bi-cart"></i> Agregar al carrito</button>
         </div>
 
         <div class="producto" data-categoria="Snacks">
@@ -203,7 +257,7 @@
             <img src="Imágenes/Galletas Rellenas (Pack 6).jpg" alt="Galletas Rellenas Pack 6">
             <h3>Galletas Rellenas (Pack 6)</h3>
             <span class="precio">S/ 4.50</span>
-            <button onclick="agregarCarrito('Galletas Rellenas (Pack 6)', 4.50)">🛒 Agregar al carrito</button>
+            <button onclick="agregarCarrito('Galletas Rellenas (Pack 6)', 4.50)"><i class="bi bi-cart"></i> Agregar al carrito</button>
         </div>
 
         <div class="producto" data-categoria="Pastas">
@@ -211,7 +265,7 @@
             <img src="Imágenes/Tallarín Delgado 500g.jpg" alt="Tallarín Delgado 500g">
             <h3>Tallarín Delgado 500g</h3>
             <span class="precio">S/ 2.80</span>
-            <button onclick="agregarCarrito('Tallarín Delgado 500g', 2.80)">🛒 Agregar al carrito</button>
+            <button onclick="agregarCarrito('Tallarín Delgado 500g', 2.80)"><i class="bi bi-cart"></i> Agregar al carrito</button>
         </div>
 
         <div class="producto" data-categoria="Pastas">
@@ -219,7 +273,7 @@
             <img src="Imágenes/Pasta Tornillo 500g.jpg" alt="Pasta Tornillo 500g">
             <h3>Pasta Tornillo 500g</h3>
             <span class="precio">S/ 3.00</span>
-            <button onclick="agregarCarrito('Pasta Tornillo 500g', 3.00)">🛒 Agregar al carrito</button>
+            <button onclick="agregarCarrito('Pasta Tornillo 500g', 3.00)"><i class="bi bi-cart"></i> Agregar al carrito</button>
         </div>
 
         <div class="producto" data-categoria="Panadería">
@@ -227,7 +281,7 @@
             <img src="Imágenes/Pan de Molde Familiar.jpg" alt="Pan de Molde Familiar">
             <h3>Pan de Molde Familiar</h3>
             <span class="precio">S/ 7.20</span>
-            <button onclick="agregarCarrito('Pan de Molde Familiar', 7.20)">🛒 Agregar al carrito</button>
+            <button onclick="agregarCarrito('Pan de Molde Familiar', 7.20)"><i class="bi bi-cart"></i> Agregar al carrito</button>
         </div>
 
         <div class="producto" data-categoria="Bebidas Calientes">
@@ -235,7 +289,7 @@
             <img src="Imágenes/Café Instantáneo 100g.jpg" alt="Café Instantáneo 100g">
             <h3>Café Instantáneo 100g</h3>
             <span class="precio">S/ 12.50</span>
-            <button onclick="agregarCarrito('Café Instantáneo 100g', 12.50)">🛒 Agregar al carrito</button>
+            <button onclick="agregarCarrito('Café Instantáneo 100g', 12.50)"><i class="bi bi-cart"></i> Agregar al carrito</button>
         </div>
 
         <div class="producto" data-categoria="Conservas">
@@ -243,7 +297,7 @@
             <img src="Imágenes/Atún en Trozos (Lata).jpg" alt="Atún en Trozos">
             <h3>Atún en Trozos (Lata)</h3>
             <span class="precio">S/ 6.20</span>
-            <button onclick="agregarCarrito('Atún en Trozos (Lata)', 6.20)">🛒 Agregar al carrito</button>
+            <button onclick="agregarCarrito('Atún en Trozos (Lata)', 6.20)"><i class="bi bi-cart"></i> Agregar al carrito</button>
         </div>
 
         <div class="producto" data-categoria="Bebidas Calientes">
@@ -251,7 +305,7 @@
             <img src="Imágenes/Café Molido 250g.jpg" alt="Café Molido 250g">
             <h3>Café Molido 250g</h3>
             <span class="precio">S/ 15.00</span>
-            <button onclick="agregarCarrito('Café Molido 250g', 15.00)">🛒 Agregar al carrito</button>
+            <button onclick="agregarCarrito('Café Molido 250g', 15.00)"><i class="bi bi-cart"></i> Agregar al carrito</button>
         </div>
 
         <div class="producto" data-categoria="Snacks">
@@ -259,7 +313,7 @@
             <img src="Imágenes/Galletas de Soda (Pack).jpg" alt="Galletas de Soda">
             <h3>Galletas de Soda (Pack)</h3>
             <span class="precio">S/ 3.50</span>
-            <button onclick="agregarCarrito('Galletas de Soda (Pack)', 3.50)">🛒 Agregar al carrito</button>
+            <button onclick="agregarCarrito('Galletas de Soda (Pack)', 3.50)"><i class="bi bi-cart"></i> Agregar al carrito</button>
         </div>
 
         <div class="producto" data-categoria="Panadería">
@@ -267,7 +321,7 @@
             <img src="Imágenes/Panetón Tradicional 900g.jpg" alt="Panetón Tradicional 900g">
             <h3>Panetón Tradicional 900g</h3>
             <span class="precio">S/ 22.00</span>
-            <button onclick="agregarCarrito('Panetón Tradicional 900g', 22.00)">🛒 Agregar al carrito</button>
+            <button onclick="agregarCarrito('Panetón Tradicional 900g', 22.00)"><i class="bi bi-cart"></i> Agregar al carrito</button>
         </div>
 
         <div class="producto" data-categoria="Conservas">
@@ -275,37 +329,54 @@
             <img src="Imágenes/Filete de Atún Premium.jpg" alt="Filete de Atún Premium">
             <h3>Filete de Atún Premium</h3>
             <span class="precio">S/ 7.80</span>
-            <button onclick="agregarCarrito('Filete de Atún Premium', 7.80)">🛒 Agregar al carrito</button>
+            <button onclick="agregarCarrito('Filete de Atún Premium', 7.80)"><i class="bi bi-cart"></i> Agregar al carrito</button>
         </div>
 
+        <div class="col-12 mt-4">
+    <div class="card border-0 shadow-sm rounded-4 text-center p-4">
+        <div class="mb-3">
+            <i class="bi bi-chat-dots-fill text-success" style="font-size: 40px;"></i>
+        </div>
+        <h4 class="fw-bold">
+            ¿Quieres productos más específicos?
+        </h4>
+        <a href="https://api.whatsapp.com/send?phone=51904637770"
+           target="_blank"
+           class="btn btn-success rounded-pill px-4 fw-semibold">
+            <i class="bi bi-whatsapp me-2"></i> Contactar ahora
+        </a>
+    </div>
+</div>
     </div>
 </section>
 
-<footer>
-    <p>&copy; 2026 BODEGA - LOS ROSALES</p>
-    <p>Contacto: +51 966 741 103</p>
+<footer class="footer-principal text-center py-3">
+    <p class="mb-0">&copy; 2026 BODEGA - LOS ROSALES</p>
+    <p class="mb-0">Contacto: +51 904 637 770</p>
 </footer>
 
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 <script>
-    // Mostrar usuario logueado
-    const usuarioNav = document.getElementById('usuarioNav');
-    const logueado = localStorage.getItem('logueado');
+    const usuarioNav    = document.getElementById('usuarioNav');
+    const logueado      = localStorage.getItem('logueado');
     const nombreUsuario = localStorage.getItem('usuarioNombre');
+
     if (logueado === "true") {
-        usuarioNav.innerHTML = `<ion-icon name="person-outline"></ion-icon> ${nombreUsuario}`;
+        usuarioNav.innerHTML = `<span class="btn btn-light btn-sm rounded-pill px-3"><i class="bi bi-person-circle"></i> ${nombreUsuario}</span>`;
     }
-    // Cerrar sesión
+
     const cerrarSesion = document.getElementById('cerrarSesion');
     if (cerrarSesion) {
-        cerrarSesion.addEventListener('click', () => {
+        cerrarSesion.addEventListener('click', (e) => {
+            e.preventDefault();
             localStorage.removeItem('logueado');
             localStorage.removeItem('usuarioNombre');
-            alert("¡Sesión cerrada!");
             window.location.href = "index.html";
         });
     }
 
-    // Vaciar carrito completo
     function vaciarCarrito() {
         if (confirm("¿Deseas vaciar el carrito?")) {
             carrito = [];
@@ -314,16 +385,65 @@
         }
     }
 
-    // Overlay: cerrar al hacer click fuera
     function toggleCarrito() {
-        const panel = document.getElementById("carrito-panel");
+        const panel   = document.getElementById("carrito-panel");
         const overlay = document.getElementById("overlay-carrito");
         panel.classList.toggle("abierto");
         overlay.classList.toggle("activo");
     }
+
+    function finalizarCompra() {
+        if (carrito.length === 0) {
+            alert("Tu carrito está vacío.");
+            return;
+        }
+        const resumen = document.getElementById('resumenCompra');
+        const total   = carrito.reduce((acc, item) => acc + item.precio * item.cantidad, 0);
+        resumen.innerHTML = carrito.map(item =>
+            `<div class="d-flex justify-content-between small mb-1">
+                <span>${item.nombre} x${item.cantidad}</span>
+                <strong>S/ ${(item.precio * item.cantidad).toFixed(2)}</strong>
+            </div>`
+        ).join('') + `<hr><div class="d-flex justify-content-between fw-bold">
+            <span>TOTAL</span><span class="text-danger">S/ ${total.toFixed(2)}</span>
+        </div>`;
+
+        const modal = new bootstrap.Modal(document.getElementById('modalCompra'));
+        modal.show();
+    }
+
+    document.getElementById('btnConfirmarCompra').addEventListener('click', () => {
+        const modal = bootstrap.Modal.getInstance(document.getElementById('modalCompra'));
+        modal.hide();
+
+        const pantalla = document.createElement('div');
+        pantalla.innerHTML = `
+            <div style="
+                position: fixed; inset: 0; background: rgba(0,0,0,0.7);
+                display: flex; align-items: center; justify-content: center;
+                z-index: 9999;">
+                <div style="
+                    background: white; border-radius: 20px;
+                    padding: 50px 40px; text-align: center;
+                    box-shadow: 0 10px 40px rgba(0,0,0,0.3);">
+                    <div style="font-size: 70px;"><i class="bi bi-check-lg"></i></div>
+                    <h2 style="color: green; margin: 15px 0;">¡Pago Recibido!</h2>
+                    <p style="color: gray;">Gracias por tu compra. Tu pedido está en camino 🎉</p>
+                    <button onclick="this.closest('div').parentElement.remove()"
+                        class="btn btn-success rounded-pill px-4 mt-3">
+                        Aceptar
+                    </button>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(pantalla);
+
+        carrito = [];
+        guardarCarrito();
+        actualizarCarritoUI();
+        toggleCarrito();
+    });
 </script>
 <script src="script.js"></script>
-<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>

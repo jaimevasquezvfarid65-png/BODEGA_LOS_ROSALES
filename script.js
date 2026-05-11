@@ -1,5 +1,5 @@
 // =============================================
-// LOGIN / REGISTRO (Login.html)
+// LOGIN / REGISTRO 
 // =============================================
 const contenedor = document.querySelector(".contenedor");
 const btnSignIn = document.getElementById("btn-sign-in");
@@ -57,15 +57,11 @@ if (btnLogin) {
 // =============================================
 // CARRITO DE COMPRAS
 // =============================================
-
-// Estado del carrito (se carga desde localStorage si existe)
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
 function guardarCarrito() {
     localStorage.setItem("carrito", JSON.stringify(carrito));
 }
-
-// Agregar producto al carrito
 function agregarCarrito(nombre, precio) {
     const index = carrito.findIndex(item => item.nombre === nombre);
     if (index !== -1) {
@@ -75,10 +71,8 @@ function agregarCarrito(nombre, precio) {
     }
     guardarCarrito();
     actualizarCarritoUI();
-    mostrarToast(` ${nombre} agregado`);
+    mostrarToast("✅ " + nombre + " agregado");
 }
-
-// Cambiar cantidad de un producto
 function cambiarCantidad(nombre, delta) {
     const index = carrito.findIndex(item => item.nombre === nombre);
     if (index !== -1) {
@@ -90,28 +84,22 @@ function cambiarCantidad(nombre, delta) {
     guardarCarrito();
     actualizarCarritoUI();
 }
-
-// Eliminar producto del carrito
 function eliminarDelCarrito(nombre) {
     carrito = carrito.filter(item => item.nombre !== nombre);
     guardarCarrito();
     actualizarCarritoUI();
 }
-
-// Actualizar la interfaz del carrito
 function actualizarCarritoUI() {
     const badge = document.getElementById("carrito-badge");
     const lista = document.getElementById("carrito-lista");
     const total = document.getElementById("carrito-total");
 
-    const totalItems = carrito.reduce((acc, item) => acc + item.cantidad, 0);
+    const totalItems  = carrito.reduce((acc, item) => acc + item.cantidad, 0);
     const totalPrecio = carrito.reduce((acc, item) => acc + item.precio * item.cantidad, 0);
-
     if (badge) {
-        badge.textContent = totalItems;
+        badge.textContent   = totalItems;
         badge.style.display = totalItems > 0 ? "flex" : "none";
     }
-
     if (lista) {
         if (carrito.length === 0) {
             lista.innerHTML = `<p class="carrito-vacio">Tu carrito está vacío 🛒</p>`;
@@ -132,35 +120,29 @@ function actualizarCarritoUI() {
             `).join('');
         }
     }
-
     if (total) {
         total.textContent = `Total: S/ ${totalPrecio.toFixed(2)}`;
     }
 }
-
-// Abrir / cerrar panel del carrito
 function toggleCarrito() {
-    const panel = document.getElementById("carrito-panel");
-    if (panel) {
-        panel.classList.toggle("abierto");
-    }
+    const panel   = document.getElementById("carrito-panel");
+    const overlay = document.getElementById("overlay-carrito");
+    if (panel)   panel.classList.toggle("abierto");
+    if (overlay) overlay.classList.toggle("activo");
 }
-
-// Toast de notificación
 function mostrarToast(mensaje) {
-    let toast = document.getElementById("toast");
+    const toast = document.getElementById("toast");
     if (!toast) return;
     toast.textContent = mensaje;
     toast.classList.add("visible");
     setTimeout(() => toast.classList.remove("visible"), 2500);
 }
-
 // =============================================
 // FILTROS DE CATEGORÍA
 // =============================================
 function filtrarCategoria(categoria) {
     const productos = document.querySelectorAll(".producto");
-    const botones = document.querySelectorAll(".btn-filtro");
+    const botones   = document.querySelectorAll(".btn-filtro");
 
     botones.forEach(b => b.classList.remove("activo"));
     const btnActivo = document.querySelector(`[data-cat="${categoria}"]`);
@@ -169,19 +151,17 @@ function filtrarCategoria(categoria) {
     productos.forEach(prod => {
         const cat = prod.getAttribute("data-categoria");
         if (categoria === "Todos" || cat === categoria) {
-            prod.style.display = "block";
+            prod.style.display   = "block";
             prod.style.animation = "fadeInUp 0.4s ease forwards";
         } else {
             prod.style.display = "none";
         }
     });
 }
-
 // =============================================
-// INIT en página de productos
+// INIT
 // =============================================
 document.addEventListener("DOMContentLoaded", () => {
-    // Inicializar carrito si estamos en Prod.html
     if (document.getElementById("carrito-badge")) {
         actualizarCarritoUI();
     }
