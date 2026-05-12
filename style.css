@@ -1,3 +1,7 @@
+/* =============================================
+   STYLE.CSS — BODEGA LOS ROSALES
+   ============================================= */
+
 /* RESET */
 * {
     margin: 0;
@@ -6,224 +10,293 @@
     font-family: Arial, sans-serif;
 }
 
-/* BODY */
 body {
-    background-color: #f5f5f5;
+    background-color: whitesmoke;
 }
 
-/* HEADER */
-header {
-    background: linear-gradient(90deg, #ff4d6d, #ff758f);
+/* ---- HEADER ---- */
+.header-principal {
+    background: linear-gradient(90deg, crimson, salmon);
     color: white;
-    padding: 15px 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
 
-header h1 {
-    font-size: 24px;
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-}
-
-nav a {
+.header-titulo {
+    font-size: 22px;
     color: white;
-    text-decoration: none;
-    font-size: 14px;
-}
-nav ul li a{
-    border: 2px solid white;
-    padding: 5px 10px;
-    border-radius: 30px;
-    transition: 0.3s;
-}
-nav ul li a:hover{
-    background-color: white;
-    color:#cc0000;
-    font-size: 20px;
-    transition: 0.3s;
-}
-nav a:hover {
-    color: #f0c14b;
 }
 
-/* BANNER */
+/* ---- BANNER ---- */
 .banner {
-    background: url("Imágenes/Tienda.jpg") center/cover no-repeat;
-    height: 260px;
+    background: url("Imágenes/Tienda.jpg") center / cover no-repeat;
+    min-height: 350px;
     margin: 20px;
     border-radius: 20px;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
 }
 
-.baner::before {
+.banner::before {
     content: "";
     position: absolute;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.5);
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
     border-radius: 20px;
 }
 
-.banner h2 {
-    font-size: 32px;
+.contenido-banner {
+    position: relative;
+    z-index: 1;
+    padding: 40px 20px;
+    color: white;
+}
+
+.banner-sub {
+    font-size: 16px;
+    color: lightyellow;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.banner-titulo {
+    font-size: 46px;
+    font-weight: 900;
+    color: white;
+    margin-bottom: 12px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.banner-desc {
+    font-size: 17px;
+    color: lightgray;
+    margin-bottom: 20px;
+}
+
+.badge-banner {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-size: 14px;
+    backdrop-filter: blur(4px);
+    margin-bottom: 24px;
+}
+
+/* ---- INFO TIENDA ---- */
+.infoTienda {
+    background-color: transparent;
+}
+
+.card-info {
+    background-color: white;
+    border-radius: 14px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s;
+}
+
+.card-info:hover {
+    transform: translateY(-4px);
+}
+
+.card-info h5 {
+    color: darkslategray;
+    font-weight: bold;
     margin-bottom: 10px;
 }
 
-/* PRODUCTOS */
+.card-info p {
+    color: dimgray;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.horario {
+    border-left: 5px solid crimson;
+}
+
+.ubicacion {
+    border-left: 5px solid steelblue;
+}
+
+.mensaje {
+    border-left: 5px solid orange;
+    background-color: linen;
+}
+
+.mensaje h6 {
+    color: darkorange;
+    font-weight: bold;
+}
+
+.mensaje p {
+    color: dimgray;
+    font-size: 14px;
+}
+
+/* ---- SECCIÓN POR QUÉ ELEGIRNOS ---- */
+.bg-light {
+    background-color: gainsboro !important;
+}
+
+.py-5 h2 {
+    color: darkslategray;
+}
+
+.card {
+    border-radius: 16px !important;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
+}
+
+.card h5 {
+    color: darkslategray;
+}
+
+.card p {
+    color: gray;
+    font-size: 14px;
+}
+
+/* ---- PRODUCTOS ---- */
 .productos {
     padding: 40px 20px;
 }
 
 .productos h2 {
     margin-bottom: 20px;
+    font-weight: bold;
+    color: darkslategray;
 }
 
-/* GRID DE PRODUCTOS */
 .contenedor-productos {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 20px;
 }
 
-/* TARJETA DE PRODUCTO */
 .producto {
     background-color: white;
     padding: 15px;
-    border-radius: 10px;
-    transition: 0.3s;
+    border-radius: 12px;
     text-align: center;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .producto:hover {
     transform: translateY(-5px);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
 }
 
 .producto img {
     width: 100%;
-    height: 200px;
+    height: 180px;
     object-fit: cover;
-    border-radius: 5px;
+    border-radius: 8px;
 }
 
-/* TEXTO PRODUCTO */
 .producto h3 {
-    margin: 10px 0;
-    font-size: 18px;
+    margin: 10px 0 6px;
+    font-size: 16px;
+    color: darkslategray;
 }
 
-.producto p {
-    font-size: 14px;
-    color: #555;
-}
-
-/* PRECIO */
 .precio {
     display: block;
-    margin: 10px 0;
+    margin: 8px 0;
     font-size: 20px;
-    color: #B12704;
+    color: firebrick;
     font-weight: bold;
 }
 
-/* BOTÓN */
 .producto button {
-    background-color: #ffd814;
+    background-color: gold;
     border: none;
     padding: 10px;
     width: 100%;
     border-radius: 20px;
     cursor: pointer;
     font-weight: bold;
-    transition: 0.3s;
+    transition: background-color 0.3s;
 }
 
 .producto button:hover {
-    background-color: #f7ca00;
+    background-color: yellow;
 }
 
-/* FOOTER */
-footer {
-    background-color: #131921;
+/* ---- YAPE BOX ---- */
+.yape-box {
+    background: linear-gradient(135deg, lavender, aliceblue);
+    border: 2px solid mediumpurple;
+}
+
+.bg-purple {
+    background-color: mediumpurple !important;
+}
+
+.text-purple {
+    color: mediumpurple !important;
+}
+
+.qr-placeholder {
+    width: 90px;
+    height: 90px;
+    background-color: white;
+    border: 2px dashed mediumpurple;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.qr-placeholder-sm {
+    width: 60px;
+    height: 60px;
+    background-color: white;
+    border: 2px dashed mediumpurple;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ---- FOOTER ---- */
+.footer-principal {
+    background-color: darkslategray;
     color: white;
-    text-align: center;
-    padding: 15px;
     margin-top: 30px;
 }
 
-/* CONTENEDOR GENERAL */
-.infoTienda {
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
-    gap: 25px;
-    padding: 20px;
-}
+/* ---- RESPONSIVE ---- */
+@media (max-width: 768px) {
+    .banner-titulo {
+        font-size: 28px;
+    }
 
-/* TARJETAS */
-.horario {
-    border-left: 5px solid #ff4d6d;
-}
+    .banner {
+        margin: 10px;
+        min-height: 260px;
+    }
 
-.beneficios {
-    border-left: 5px solid #a855f7;
-}
+    .header-titulo {
+        font-size: 16px;
+    }
 
-.ubicacion {
-    border-left: 5px solid #3b82f6;
-}
+    nav ul {
+        flex-wrap: wrap;
+        gap: 6px !important;
+    }
 
-/* IMAGEN CENTRAL */
-.imagenTienda {
-    grid-column: 2;
-}
-
-.imagenTienda img {
-    width: 100%;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-}
-
-/* MENSAJE ABAJO */
-.mensaje {
-    grid-column: 2;
-    background: #fff4e6;
-    padding: 15px;
-    border-radius: 12px;
-    text-align: center;
-}
-
-.mensaje {
-    background: #fff4e6;
-    border-left: 5px solid #ff9900;
-}
-
-/* BOTÓN */
-.btn-mapa {
-    .btn-mapa {
-    background: linear-gradient(45deg, #ff4d4d, #ff1a1a);
-    padding: 12px 20px;
-    font-weight: bold;
-    border-radius: 10px;
-    border: 2px solid white;
-}
-}
-
-.btn-mapa:hover {
-    background: #cc0000;
-}
-
-.horario:hover,
-.beneficios:hover,
-.ubicacion:hover {
-    transform: translateY(-5px);
+    .contenedor-productos {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    }
 }

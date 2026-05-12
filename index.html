@@ -4,100 +4,202 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BODEGA - LOS ROSALES</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <!-- ENCABEZADO -->
-    <header>
-        <h1>BODEGA - LOS ROSALES</h1>
-        <nav>
-            <ul id="navPag">
-                <li id="usuarioNav"></li>
-                <li><a id="navRegistro" href="Login.html">Registrarse</a></li>
-                <li><a href="Prod.html">Productos</a></li>
-                <li><a href="#">Contacto</a></li>
-                <li><a id="navCerrar" href="#">Cerrar sesion</a></li>
-            </ul>
-        </nav>
+    <header class="header-principal">
+        <div class="container-fluid d-flex justify-content-between align-items-center py-3 px-4">
+            <h1 class="header-titulo mb-0">
+                <i class="bi bi-shop"></i> BODEGA - LOS ROSALES
+            </h1>
+            <nav>
+                <ul class="nav gap-2 align-items-center" id="navPag">
+                    <li class="nav-item" id="usuarioNav"></li>
+                    <li class="nav-item">
+                        <a id="navRegistro" class="btn btn-outline-light btn-sm rounded-pill px-3" href="Login.html">
+                            <i class="bi bi-person-plus"></i> Registrarse
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-light btn-sm rounded-pill px-3" href="Prod.html">
+                            <i class="bi bi-basket2"></i> Productos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-light btn-sm rounded-pill px-3" href="#contacto">
+                            <i class="bi bi-telephone"></i> Contacto
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="navCerrar" class="btn btn-light btn-sm rounded-pill px-3 text-danger fw-bold" href="#">
+                            <i class="bi bi-box-arrow-right"></i> Cerrar sesión
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <!-- CONTENIDO PRINCIPAL --> <!-- NATURALICH IBARRA -->
-     <section class="banner">
-        <div class="contenido-banner">
-            <h2>Bienvenidos a</h2>
-            <h1>BODEGA - LOS ROSALES</h1>
-            <p>Tu tienda de confianza para productos frescos y de calidad.</p>
-
-            <div class="badge">
-                ❤️ Calidad, confianza y buenos precios
+    <!-- BANNER PRINCIPAL -->
+    <section class="banner">
+        <div class="contenido-banner text-center text-white">
+            <p class="banner-sub mb-1">Bienvenidos a</p>
+            <h1 class="banner-titulo">BODEGA - LOS ROSALES</h1>
+            <p class="banner-desc">Tu tienda de confianza para productos frescos y de calidad.</p>
+            <span class="badge-banner">
+                <i class="bi bi-heart-fill text-danger"></i> Calidad, confianza y buenos precios
+            </span>
+            <div class="mt-4">
+                <a href="#contacto" class="btn btn-outline-light rounded-pill px-4">
+                    <i class="bi bi-telephone-fill"></i> Contacto
+                </a>
             </div>
         </div>
     </section>
 
-    <section class="infoTienda">
+    <!-- INFO DE LA TIENDA -->
+    <section class="infoTienda py-5">
+        <div class="container">
+            <div class="row g-4 align-items-start">
 
-        <div class="horario">
-            <h3>🕒 Horario de Atención</h3>
-            <p><b>Lunes - Viernes</b><br>7:30 AM - 8:00 PM</p>
-            <p><b>Sábado - Domingo</b><br>8:00 AM - 7:00 PM</p>
+                <!-- Horario -->
+                <div class="col-md-3">
+                    <div class="card-info horario h-100 p-4">
+                        <h5><i class="bi bi-clock-fill me-2 text-danger"></i>Horario de Atención</h5>
+                        <hr>
+                        <p><strong>Lunes - Viernes</strong><br>7:30 AM - 8:00 PM</p>
+                        <p class="mt-2"><strong>Sábado - Domingo</strong><br>8:00 AM - 7:00 PM</p>
+                    </div>
+                </div>
+
+                <!-- Imagen central -->
+                <div class="col-md-6">
+                    <img src="Imágenes/Tienda.jpg" alt="Tienda Los Rosales"
+                        class="img-fluid rounded-4 shadow w-100"
+                        style="max-height:280px; object-fit:cover;">
+
+                    <!-- Mensaje debajo de la imagen -->
+                    <div class="card-info mensaje mt-3 p-4">
+                        <h6><i class="bi bi-cart-heart-fill me-2"></i>Más que una tienda, somos tu aliado</h6>
+                        <p class="mb-0">En Bodega Los Rosales nos esforzamos cada día para brindarte productos frescos, variedad y un excelente servicio.</p>
+                    </div>
+                </div>
+
+                <!-- Ubicación -->
+                <div class="col-md-3">
+                    <div class="card-info ubicacion h-100 p-4">
+                        <h5><i class="bi bi-geo-alt-fill me-2 text-primary"></i>Ubicación</h5>
+                        <hr>
+                        <p>Cajamarca, Perú</p>
+                        <a href="https://maps.app.goo.gl/wQSk3L6UaXnmWiei9" target="_blank"
+                            class="btn btn-danger btn-sm rounded-pill w-100 mt-2">
+                            <i class="bi bi-map-fill"></i> Ver en Google Maps
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <div class="imagenTienda">
-            <img src="Imágenes/Tienda.jpg" alt="">
-        </div>
-
-        <div class="ubicacion">
-            <h3>📍 Ubicación</h3>
-            <p>Cajamarca, Perú</p>
-            <a href="https://maps.app.goo.gl/wQSk3L6UaXnmWiei9" target="_blank" class="btn-mapa">
-                Ver en Google Maps
-            </a>
-        </div>
-
-        <div class="beneficios">
-            <h3>¿Por qué elegirnos?</h3>
-            <ul>
-                <li>✔ Productos de calidad</li>
-                <li>✔ Precios competitivos</li>
-                <li>✔ Atención rápida</li>
-            </ul>
-        </div>
-
-        <div class="mensaje">
-            <h3>🛒 Más que una tienda, somos tu aliado</h3>
-            <p>
-                En Bodega Los Rosales nos esforzamos cada día para brindarte productos frescos,
-                variedad y un excelente servicio.
-            </p>
-        </div>
-
     </section>
 
-     <section class="beneficios">
-        <h2>¿Por qué elegirnos?</h2>
-        <ul>
-            <li>Productos de calidad.</li>
-            <li>Precios competitivos.</li>
-            <li>Atención al cliente excepcional.</li>
-        </ul>
-     </section>
-     <div>
-        <div class="Formulario">
-        <h3>¿Qúe opinas de nuestro servicio?</h3>
-        <p>Haz clic en el botón para dejar tu opnion</p>
-        <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modalContacto">
-            <i class="bi bi-envelope-paper-fill"></i> Abrir el Formulario
-        </button>
-    </div>
-        
-     </div>
+    <!-- POR QUÉ ELEGIRNOS -->
+    <section class="py-5 bg-light">
+        <div class="container text-center">
+            <h2 class="fw-bold mb-4" style="color: darkslategray;">¿Por qué elegirnos?</h2>
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm p-4 h-100">
+                        <div class="fs-1 mb-2">🌟</div>
+                        <h5 class="fw-bold">Productos de calidad</h5>
+                        <p class="text-muted">Seleccionamos los mejores productos para ti.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm p-4 h-100">
+                        <div class="fs-1 mb-2">💰</div>
+                        <h5 class="fw-bold">Precios competitivos</h5>
+                        <p class="text-muted">Los mejores precios del mercado, siempre.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm p-4 h-100">
+                        <div class="fs-1 mb-2">🤝</div>
+                        <h5 class="fw-bold">Atención excepcional</h5>
+                        <p class="text-muted">Un servicio rápido y amable en todo momento.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-     <!-- PIE DE PÁGINA -->  <!-- NATURALICH IBARRA -->
-        <footer>
-            <p>&copy; 2026 BODEGA - LOS ROSALES</p>
-            <p>Contacto: +51 966 741 103</p>
-        </footer>
+    <!-- FORMULARIO DE OPINIÓN -->
+    <section class="py-5">
+        <div class="container text-center">
+            <h4 class="fw-bold mb-2" style="color: darkslategray;">¿Qué opinas de nuestro servicio?</h4>
+            <p class="text-muted mb-4">Haz clic en el botón para dejar tu opinión</p>
+            <button type="button" class="btn btn-danger rounded-pill px-4 fw-bold"
+                data-bs-toggle="modal" data-bs-target="#modalContacto">
+                <i class="bi bi-envelope-paper-fill"></i> Abrir el Formulario
+            </button>
+        </div>
+    </section>
+
+    <!-- MODAL DE OPINIÓN -->
+    <div class="modal fade" id="modalContacto" tabindex="-1" aria-labelledby="modalContactoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4">
+                <div class="modal-header bg-danger text-white rounded-top-4">
+                    <h5 class="modal-title" id="modalContactoLabel">
+                        <i class="bi bi-chat-heart-fill"></i> Deja tu opinión
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Tu nombre</label>
+                        <input type="text" id="opinionNombre" class="form-control rounded-3" placeholder="¿Cómo te llamas?">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Tu opinión</label>
+                        <textarea id="opinionTexto" class="form-control rounded-3" rows="4" placeholder="Cuéntanos tu experiencia..."></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger rounded-pill px-4 fw-bold" id="btnEnviarOpinion">
+                        <i class="bi bi-send-fill"></i> Enviar opinión
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="py-4 bg-light">
+        <div class="container text-center">
+            <h5 class="fw-bold"><i class="bi bi-telephone-fill text-danger me-2"></i>Contáctanos</h5>
+            <p class="mb-0"><a href="tel:+51904637770" class="text-decoration-none text-dark fw-semibold">+51 904 637 770</a></p>
+            <p class="text-muted small mt-1">Cajamarca, Perú</p>
+        </div>
+    </section>
+
+    <!-- PIE DE PÁGINA -->
+    <footer class="footer-principal text-center py-3">
+        <p class="mb-0">&copy; 2026 BODEGA - LOS ROSALES</p>
+        <p class="mb-0">Contacto: +51 904 637 770</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
     <script>
         const usuarioNav = document.getElementById('usuarioNav');
         const navCerrar = document.getElementById('navCerrar');
